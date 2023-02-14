@@ -25,12 +25,13 @@ import java.util.Map;
 public class TLCPlayIntegrity extends CordovaPlugin {
 
   private final String LOG_TAG = "TLCPlayIntegrity";
+  private final long CLOUD_PROJECT_NUMBER = 470007365374l;
 
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
     if (action.equals("certifyKey")) {
       String nonce = Base64.encodeToString(args.getString(0).getBytes(),
-        Base64.URL_SAFE | Base64.NO_WRAP) ;
+        Base64.URL_SAFE | Base64.NO_WRAP);
       this.certifyKey(nonce, callbackContext);
       return true;
     }
@@ -40,7 +41,7 @@ public class TLCPlayIntegrity extends CordovaPlugin {
   private void certifyKey(String nonce, CallbackContext callbackContext) {
     Log.d(LOG_TAG, "Nonce: " + nonce);
     IntegrityManager integrityManager = IntegrityManagerFactory.create(this.cordova.getActivity().getApplicationContext());
-    Task<IntegrityTokenResponse> integrityTokenResponse = integrityManager.requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(nonce).build());
+    Task<IntegrityTokenResponse> integrityTokenResponse = integrityManager.requestIntegrityToken(IntegrityTokenRequest.builder().setCloudProjectNumber(CLOUD_PROJECT_NUMBER).setNonce(nonce).build());
     integrityTokenResponse.addOnCompleteListener(new OnCompleteListener<IntegrityTokenResponse>() {
       @Override
       public void onComplete(Task<IntegrityTokenResponse> task) {
@@ -51,9 +52,10 @@ public class TLCPlayIntegrity extends CordovaPlugin {
           Map<String, String> data = new HashMap<>();
           data.put("status", "Success");
           data.put("result", result.token());
+
           callbackContext.success(new JSONObject(data));
         } else {
-          Log.e(LOG_TAG, "Play Integrity Task Failed." +  task.getException().getLocalizedMessage());
+          Log.e(LOG_TAG, "Play Integrity Task Failed." + task.getException().getLocalizedMessage());
           callbackContext.error("Play Integrity Task Failed." + task.getException().getLocalizedMessage());
           task.getException().printStackTrace();
         }
