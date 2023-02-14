@@ -1,0 +1,17 @@
+{
+  "name": "cordova-plugin-tlc-play-integrity",
+  "version": "1.0.0",
+  "description": "Play Integrity Implementation.",
+  "cordova": {
+    "id": "cordova-plugin-tlc-play-integrity",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "TLC DigiTech Pvt. Ltd.",
+  "license": "MIT"
+}

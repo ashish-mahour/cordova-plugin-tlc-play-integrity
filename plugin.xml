@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-tlc-play-integrity" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-plugin-tlc-play-integrity</name>
+    <js-module name="TLCPlayIntegrity" src="www/TLCPlayIntegrity.js">
+        <clobbers target="cordova.plugins.TLCPlayIntegrity" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="TLCPlayIntegrity">
+                <param name="android-package" value="com.tlcgroup.TLCPlayIntegrity" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml" />
+        <source-file src="src/android/TLCPlayIntegrity.java" target-dir="src/com/tlcgroup" />
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+    </platform>
+</plugin>
