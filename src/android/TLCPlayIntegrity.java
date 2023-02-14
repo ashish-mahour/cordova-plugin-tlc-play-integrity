@@ -50,7 +50,7 @@ public class TLCPlayIntegrity extends CordovaPlugin {
           Log.d(LOG_TAG, "Result Token: " + token);
           Map<String, String> data = new HashMap<>();
           data.put("status", "Success");
-          data.put("res", result.token());
+          data.put("result", result.token());
           callbackContext.success(new JSONObject(data));
         } else {
           Log.e(LOG_TAG, "Play Integrity Task Failed." +  task.getException().getLocalizedMessage());
