@@ -10,7 +10,7 @@
                 <param name="android-package" value="com.tlcgroup.TLCPlayIntegrity" />
             </feature>
         </config-file>
-        <preference name="PROJECT_NUMBER"/>
+        <preference name="PROJECT_NUMBER" default="0"/>
         <config-file target="res/values/strings.xml" parent="/resources">
             <string name="google_cloud_project_number">$PROJECT_NUMBER</string>
         </config-file>
